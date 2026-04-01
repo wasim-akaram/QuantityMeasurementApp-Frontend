@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signup / Login Form</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <div class="card">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <img src="../css/frontendpic.png" alt="Logo" class="logo" />
+      <p class="tag">QUANTITY MEASUREMENT</p>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <!-- Tabs -->
+      <div class="tabs">
+        <span class="tab active" id="signupTab" onclick="showSignup()">SIGNUP</span>
+        <span class="tab inactive" id="loginTab" onclick="showLogin()">LOGIN</span>
+      </div>
+
+      <!-- Signup Form -->
+      <form id="signupForm" class="form active-form" novalidate onsubmit="handleSignup(event)">
+        <div class="input-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter your full name" />
+          <small class="error-message"></small>
+        </div>
+
+        <div class="input-group">
+          <label for="signupEmail">Email Id</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email" />
+          <small class="error-message"></small>
+        </div>
+
+        <div class="input-group">
+          <label for="signupPassword">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="signupPassword" placeholder="Create a password" />
+            <span class="toggle-password" onclick="togglePassword('signupPassword')">👁</span>
+          </div>
+          <small class="error-message"></small>
+        </div>
+
+        <div class="input-group">
+          <label for="mobileNumber">Mobile Number</label>
+          <input type="tel" id="mobileNumber" placeholder="Enter mobile number" />
+          <small class="error-message"></small>
+        </div>
+
+        <button type="submit" class="signup-btn">Signup</button>
+
+        <p class="bottom-text">
+          Already have an account?
+          <a href="#" onclick="event.preventDefault(); showLogin()">Login</a>
+        </p>
+      </form>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="form hidden-form" novalidate onsubmit="handleLogin(event)">
+        <div class="input-group">
+          <label for="loginEmail">Email Id</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" />
+          <small class="error-message"></small>
+        </div>
+
+        <div class="input-group">
+          <label for="loginPassword">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="loginPassword" placeholder="Enter your password" />
+            <span class="toggle-password" onclick="togglePassword('loginPassword')">👁</span>
+          </div>
+          <small class="error-message"></small>
+        </div>
+
+        <button type="submit" class="signup-btn">Login</button>
+
+        <p class="bottom-text">
+          Don’t have an account?
+          <a href="#" onclick="event.preventDefault(); showSignup()">Signup</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup hidden-popup">
+    <div class="popup-content">
+      <p id="popupMessage"></p>
+      <button type="button" onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>
