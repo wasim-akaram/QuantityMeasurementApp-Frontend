@@ -1,0 +1,56 @@
+<header>
+  <h1>⚖️ Quantity Measurement</h1>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span id="welcomeMsg" style="font-size:.88rem;opacity:.85;">👋 Hi, {{ welcomeText }}</span>
+    <button class="logout-btn" (click)="logout()">← Logout</button>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="section-label">Choose Type</div>
+    <div class="type-grid">
+      <button class="type-btn" [class.active]="currentType==='length'" (click)="setType('length')">📏<span class="label">Length</span></button>
+      <button class="type-btn" [class.active]="currentType==='weight'" (click)="setType('weight')">⚖️<span class="label">Weight</span></button>
+      <button class="type-btn" [class.active]="currentType==='temperature'" (click)="setType('temperature')">🌡️<span class="label">Temperature</span></button>
+      <button class="type-btn" [class.active]="currentType==='volume'" (click)="setType('volume')">🧪<span class="label">Volume</span></button>
+    </div>
+
+    <div class="section-label">Choose Action</div>
+    <div class="action-tabs">
+      <button class="tab-btn" [class.active]="currentAction==='comparison'" (click)="setAction('comparison')">Comparison</button>
+      <button class="tab-btn" [class.active]="currentAction==='conversion'" (click)="setAction('conversion')">Conversion</button>
+      <button class="tab-btn" [class.active]="currentAction==='arithmetic'" (click)="setAction('arithmetic')">Arithmetic</button>
+    </div>
+
+    <div class="arith-op" [class.visible]="currentAction==='arithmetic'">
+      <span style="font-size:.8rem;font-weight:600;color:var(--muted);margin-right:4px;">Operation:</span>
+      <button class="op-btn" [class.active]="currentOp==='+'" (click)="setOp('+')">+</button>
+      <button class="op-btn" [class.active]="currentOp==='-'" (click)="setOp('-')">−</button>
+      <button class="op-btn" [class.active]="currentOp==='*'" (click)="setOp('*')">×</button>
+      <button class="op-btn" [class.active]="currentOp==='/'" (click)="setOp('/')">÷</button>
+    </div>
+
+    <div class="inputs-row">
+      <div class="input-group">
+        <label>From</label>
+        <input type="number" [(ngModel)]="val1" min="0" step="any" />
+        <select [(ngModel)]="unit1">
+          <option *ngFor="let u of currentUnits" [value]="u">{{ u }}</option>
+        </select>
+      </div>
+      <div class="input-group" id="to-group">
+        <label>{{ currentAction === 'conversion' ? 'To' : 'Value 2' }}</label>
+        <input *ngIf="currentAction !== 'conversion'" type="number" [(ngModel)]="val2" min="0" step="any" />
+        <input *ngIf="currentAction==='conversion'" type="hidden" />
+        <select [(ngModel)]="unit2">
+          <option *ngFor="let u of currentUnits" [value]="u">{{ u }}</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="calc-btn" (click)="calculate()">Calculate ↗</button>
+
+    <div id="result-box" [class.show]="hasResult" [innerHTML]="resultHtml"></div>
+  </div>
+</main>

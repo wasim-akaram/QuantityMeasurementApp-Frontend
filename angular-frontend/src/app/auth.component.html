@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="left-panel">
+    <img src="../../assets/logo.png" alt="Logo" class="logo" />
+    <p class="tag">QUANTITY MEASUREMENT</p>
+  </div>
+
+  <div class="right-panel">
+    <div class="tabs">
+      <span class="tab" [class.active]="isSignupMode" (click)="toggleMode(true)">SIGNUP</span>
+      <span class="tab" [class.active]="!isSignupMode" (click)="toggleMode(false)">LOGIN</span>
+    </div>
+
+    <form *ngIf="isSignupMode" class="form" (ngSubmit)="handleSignup()" novalidate>
+      <div class="input-group">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" name="fullName" type="text" [(ngModel)]="signupForm.fullName" />
+        <small class="error-message">{{ signupErrors.fullName }}</small>
+      </div>
+
+      <div class="input-group">
+        <label for="signupEmail">Email Id</label>
+        <input id="signupEmail" name="email" type="email" [(ngModel)]="signupForm.email" />
+        <small class="error-message">{{ signupErrors.email }}</small>
+      </div>
+
+      <div class="input-group">
+        <label for="signupPassword">Password</label>
+        <div class="password-wrapper">
+          <input id="signupPassword" name="password" type="password" [(ngModel)]="signupForm.password" />
+          <span class="toggle-password" (click)="togglePassword('signupPassword')">👁</span>
+        </div>
+        <small class="error-message">{{ signupErrors.password }}</small>
+      </div>
+
+      <div class="input-group">
+        <label for="mobileNumber">Mobile Number</label>
+        <input id="mobileNumber" name="mobile" type="tel" [(ngModel)]="signupForm.mobile" />
+        <small class="error-message">{{ signupErrors.mobile }}</small>
+      </div>
+
+      <button type="submit" class="signup-btn">Signup</button>
+      <p class="bottom-text">Already have an account? <a (click)="toggleMode(false)">Login</a></p>
+    </form>
+
+    <form *ngIf="!isSignupMode" class="form" (ngSubmit)="handleLogin()" novalidate>
+      <div class="input-group">
+        <label for="loginEmail">Email Id</label>
+        <input id="loginEmail" name="email" type="email" [(ngModel)]="loginForm.email" />
+        <small class="error-message">{{ loginErrors.email }}</small>
+      </div>
+
+      <div class="input-group">
+        <label for="loginPassword">Password</label>
+        <div class="password-wrapper">
+          <input id="loginPassword" name="password" type="password" [(ngModel)]="loginForm.password" />
+          <span class="toggle-password" (click)="togglePassword('loginPassword')">👁</span>
+        </div>
+        <small class="error-message">{{ loginErrors.password }}</small>
+      </div>
+
+      <button type="submit" class="signup-btn">Login</button>
+      <p class="bottom-text">Don’t have an account? <a (click)="toggleMode(true)">Signup</a></p>
+    </form>
+  </div>
+</div>
+
+<div id="popup" class="popup" *ngIf="popupVisible">
+  <div class="popup-content">
+    <p id="popupMessage">{{ popupMessage }}</p>
+    <button type="button" (click)="closePopup()">OK</button>
+  </div>
+</div>
