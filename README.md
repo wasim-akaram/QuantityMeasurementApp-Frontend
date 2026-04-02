@@ -1,4 +1,6 @@
-#  Quantity Measurement Application – Frontend (HTML, CSS, JavaScript)
+# Quantity Measurement Application – Frontend (Angular, HTML, CSS, JavaScript)
+
+This workspace includes an Angular-based frontend application under `angular-frontend` built with Angular 21, plus supporting legacy static HTML/CSS/JavaScript files in the `css/`, `html/`, and `js/` folders.
 
 ##  Responsive UI for Quantity Conversion, Comparison & Arithmetic Operations
 
@@ -74,9 +76,12 @@ This implementation focuses on:
 
 ### Frontend Technologies
 
+* Angular 21
+* Angular CLI
 * HTML5
 * CSS3
 * JavaScript (ES6+)
+* Node.js / npm
 
 ### Storage
 
