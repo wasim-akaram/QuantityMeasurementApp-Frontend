@@ -1,188 +1,183 @@
-# Quantity Measurement Application – Frontend (Angular, HTML, CSS, JavaScript)
+# Quantity Measurement Application – Angular Frontend
 
-This workspace includes an Angular-based frontend application under `angular-frontend` built with Angular 21, plus supporting legacy static HTML/CSS/JavaScript files in the `css/`, `html/`, and `js/` folders.
-
-##  Responsive UI for Quantity Conversion, Comparison & Arithmetic Operations
-
-A clean, responsive, and interactive frontend application built using **HTML5, CSS3, and JavaScript** that allows users to:
-
-* Convert units
-* Compare measurements
-* Perform arithmetic operations on quantities
-* Securely signup and login using client-side validation
+A modern, responsive, and interactive frontend application built using Angular that allows users to convert units, compare measurements, perform arithmetic operations on quantities, and securely signup/login with validation.
 
 ---
 
-##  Project Overview
+## 🚀 Project Overview
 
-The **Quantity Measurement Application – Frontend** provides a complete UI experience for working with measurable quantities along with a **basic authentication system**.
+The Quantity Measurement Application provides a complete UI experience for working with measurable quantities along with a basic authentication system.
 
-This project demonstrates strong understanding of:
-
-* Semantic HTML structure
-* Responsive UI design
-* JavaScript-based DOM manipulation
-* Event-driven programming
-* Form validation and user feedback
-* LocalStorage-based session management
+This project demonstrates strong understanding of Angular architecture, component-based design, responsive UI development, event-driven programming, form validation, client-side authentication handling, and scalable frontend structure.
 
 ---
 
-##  Objective
+## 🎯 Objective
 
-This implementation focuses on:
-
-* Building a **pure frontend application (no frameworks)**
-* Creating a **real-world user flow (Signup → Login → Dashboard)**
-* Practicing **clean architecture and modular coding**
-* Designing a **scalable and maintainable UI**
+- Build a scalable frontend using Angular framework  
+- Create a real-world user flow (Signup → Login → Dashboard)  
+- Apply modular architecture and reusable components  
+- Design a clean and maintainable UI  
 
 ---
 
-##  Authentication Features
+## 🔐 Authentication Features
 
-* User Signup with validation
-* User Login with credential check
-* Session management using **localStorage**
-* Protected dashboard (redirect if not logged in)
-* Logout functionality
-
----
-
-##  Core Features
-
-###  Measurement Operations
-
-* 🔄 Unit Conversion
-* ⚖️ Unit Comparison
-* ➕ Arithmetic Operations (+, −, ×, ÷)
-
-###  Supported Types
-
-* Length
-* Weight
-* Temperature
-* Volume
-
-###  Form Handling
-
-* Real-time validation feedback
-* Error messages displayed correctly under each input
-* Input highlighting (red = error, green = success)
+- User Signup with validation  
+- User Login with credential verification  
+- Session management using LocalStorage  
+- Protected dashboard using route guards  
+- Logout functionality  
 
 ---
 
-##  Tech Stack
+## ⚙️ Core Features
+
+### Measurement Operations
+
+- Unit Conversion  
+- Unit Comparison  
+- Arithmetic Operations (+, −, ×, ÷)  
+
+### Supported Types
+
+- Length  
+- Weight  
+- Temperature  
+- Volume  
+
+---
+
+## 📝 Form Handling
+
+- Real-time validation feedback  
+- Error messages under inputs  
+- Input highlighting (error/success states)  
+- Angular form validation (Reactive/Template-driven)  
+
+---
+
+## 🛠️ Tech Stack
 
 ### Frontend Technologies
 
-* Angular 21
-* Angular CLI
-* HTML5
-* CSS3
-* JavaScript (ES6+)
-* Node.js / npm
+- Angular (v21)  
+- TypeScript  
+- HTML5  
+- CSS3  
 
 ### Storage
 
-* Browser **LocalStorage**
+- Browser LocalStorage  
 
 ---
 
-##  UI & UX Highlights
+## 🎨 UI & UX Highlights
 
-* Split-screen modern login/signup UI
-* Interactive tabs (Signup/Login)
-* Animated result display
-* Responsive layout (mobile + desktop)
-* Clean and minimal design  
+- Modern Angular component-based UI  
+- Responsive design (mobile + desktop)  
+- Clean dashboard layout  
+- Interactive forms and validation  
+- Dynamic result display  
+- Smooth navigation using Angular Routing  
 
 ---
 
-##  Frontend Architecture Flow
+## 🧩 Frontend Architecture Flow
 
-```text
-User Interaction
-      │
-      ▼
-Form Input / Button Events
-      │
-      ▼
-JavaScript Event Handling
-      │
-      ▼
-Validation & Logic Processing
-      │
-      ▼
-DOM Manipulation
-      │
-      ▼
-Updated UI Output
-```
+User Interaction  
+↓  
+Angular Component (UI)  
+↓  
+Event Binding (Click/Input)  
+↓  
+Service Layer (Business Logic)  
+↓  
+Validation & Processing  
+↓  
+State Update  
+↓  
+UI Re-render (Angular Change Detection)  
 
 ---
 
 ## 📂 Project Structure
 
-```text
-QuantityMeasurementApp/
-│
-├── css/
-│   ├── style.css         # Signup/Login styles
-│   ├── home.css          # Dashboard styles
-│   └── frontendpic.png   # Left panel image
-│
-├── html/
-│   ├── index.html        # Signup & Login page
-│   └── document.html     # Dashboard page
-│
-├── js/
-│   ├── script.js         # Auth + validation logic
-│   └── home.js           # Measurement logic
-│
-└── README.md
-```
+angular-frontend/  
+│  
+├── src/  
+│   ├── app/  
+│   │   ├── components/        # UI components (login, dashboard, etc.)  
+│   │   ├── services/          # Business logic & utilities  
+│   │   ├── guards/            # Route protection (auth guard)  
+│   │   ├── app.routes.ts      # Routing configuration  
+│   │   └── app.config.ts      # App configuration  
+│   │  
+│   ├── assets/                # Static resources  
+│   ├── styles.css             # Global styles  
+│   ├── main.ts                # Entry point  
+│   └── main.server.ts         # SSR entry (if used)  
+│  
+├── public/                    # Static assets (SSR)  
+├── dist/                      # Production build output  
+├── package.json  
+└── README.md  
 
 ---
 
-## 📄 Pages Included
+## 📄 Pages / Modules
 
-### 🔹 index.html
+### Authentication Module
 
-* Signup & Login UI
-* Form validation
-* Authentication logic
+- Signup & Login UI  
+- Form validation  
+- LocalStorage session handling  
 
-### 🔹 document.html
+### Dashboard Module
 
-* Measurement dashboard
-* Conversion, comparison, arithmetic
+- Measurement operations  
+- Conversion, comparison, arithmetic  
+- Dynamic UI updates  
 
 ---
 
-##  How to Run the Project
+## ▶️ How to Run the Project
 
-### 1️⃣ Clone Repository
+1. Clone Repository
 
-```bash
 git clone <your-repo-url>
-```
 
-### 2️⃣ Open Project
+2. Navigate to Project
 
-```bash
-cd QuantityMeasurementApp
-```
+cd angular-frontend
 
-### 3️⃣ Run
+3. Install Dependencies
 
-Open:
+npm install
 
-```text
-html/index.html
-```
+4. Run Application
 
-OR use **Live Server (Recommended)**
+npm start
+
+Open in browser:
+
+http://localhost:4200/
+
+---
+
+## 🏗️ Production Build
+
+npm run build
+
+Output folder:
+
+dist/angular-frontend
+
+---
+
+## 🌐 Server-Side Rendering (Optional)
+
+npm run serve:ssr:angular-frontend
 
 ---
 
@@ -190,68 +185,65 @@ OR use **Live Server (Recommended)**
 
 Built using:
 
-* Flexbox
-* CSS Grid
-* Media Queries
+- Flexbox  
+- CSS Grid  
+- Media Queries  
 
-Ensures smooth experience across:
+Supports:
 
-* Desktop
-* Tablet
-* Mobile
-
----
-
-##  Core Concepts Practiced
-
-### HTML & CSS
-
-* Semantic HTML
-* Responsive Layout
-* Flexbox & Grid
-* UI Design
-
-### JavaScript
-
-* DOM Manipulation
-* Event Handling
-* Form Validation
-* LocalStorage
-* Dynamic UI Rendering
+- Desktop  
+- Tablet  
+- Mobile  
 
 ---
 
-##  Key Learning Outcomes
+## 📚 Core Concepts Practiced
 
-* Built a complete frontend application from scratch
-* Implemented authentication without backend
-* Designed responsive UI
-* Handled real-world validation issues
-* Structured clean and scalable code
+### Angular
+
+- Components & Modules  
+- Routing  
+- Services & Dependency Injection  
+- Form Handling  
+- State Management  
+
+### Frontend
+
+- Responsive UI Design  
+- Clean Architecture  
+- Reusable Components  
 
 ---
 
-##  Future Enhancements
+## 🎓 Key Learning Outcomes
 
-* Backend integration (Spring Boot / Node.js)
-* Database support (MySQL / MongoDB)
-* JWT Authentication
-* Dark Mode UI
-* Advanced validation (real-time)
-* Unit testing
+- Built a complete Angular frontend application  
+- Implemented authentication without backend  
+- Designed scalable and maintainable architecture  
+- Practiced real-world UI/UX patterns  
+- Improved problem-solving in frontend logic  
+
+---
+
+## 🔮 Future Enhancements
+
+- Backend integration (Spring Boot / Node.js)  
+- Database support (MySQL / MongoDB)  
+- JWT Authentication  
+- Dark Mode UI  
+- Advanced validation (real-time + async)  
+- Unit & Integration testing  
 
 ---
 
 ## 👨‍💻 Author
 
-**Wasim Akaram**
+Wasim Akaram  
 
-Frontend Developer | Java Enthusiast | Passionate about clean UI & scalable systems
+Frontend Developer | Java Enthusiast | Passionate about clean UI & scalable systems  
 
 ---
 
 ## ⭐ Support
 
 If you like this project, give it a ⭐ on GitHub!
-
----
