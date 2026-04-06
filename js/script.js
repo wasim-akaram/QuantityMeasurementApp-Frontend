@@ -32,8 +32,7 @@ function togglePassword(inputId) {
 }
 
 function showPopup(message) {
-  document.getElementById("popupMessage").innerText = message;
-  document.getElementById("popup").classList.remove("hidden-popup");
+  alert(message);
 }
 
 function closePopup() {
@@ -68,7 +67,9 @@ function isValidEmail(email) {
 }
 
 function isValidMobile(mobile) {
-  return /^[0-9]{10}$/.test(mobile);
+  // Allow 10 digits, or +91 followed by 10 digits, or with spaces
+  const cleaned = mobile.replace(/\s+/g, '').replace(/^\+91/, '');
+  return /^[0-9]{10}$/.test(cleaned);
 }
 
 function validateSignupForm() {
@@ -174,7 +175,7 @@ function handleSignup(event) {
 
   localStorage.setItem("qm_user", JSON.stringify(userData));
 
-  showPopup("Signup successful! Please login now 🦋");
+  showPopup("Registration successful! Please login to continue");
   document.getElementById("signupForm").reset();
 
   // remove green styles after reset
@@ -182,11 +183,11 @@ function handleSignup(event) {
     input.classList.remove("success", "error");
   });
 
-  // Switch to login tab after 1.5 sec
+  // Switch to login tab after 3 sec
   setTimeout(() => {
     closePopup();
     showLogin();
-  }, 1500);
+  }, 3000);
 }
 
 function handleLogin(event) {

@@ -6,16 +6,16 @@ import { FormsModule } from '@angular/forms';
 type UnitType = 'length' | 'weight' | 'temperature' | 'volume';
 
 const UNITS: Record<UnitType, string[]> = {
-  length: ['Kilometer','Meter','Centimeter','Millimeter','Mile','Foot','Inch','Yard'],
-  weight: ['Kilogram','Gram','Milligram','Pound','Ounce','Ton'],
-  temperature: ['Celsius','Fahrenheit','Kelvin'],
-  volume: ['Liter','Milliliter','Cubic Meter','Gallon','Fluid Ounce','Cup']
+  length: ['Kilometer', 'Meter', 'Centimeter', 'Millimeter', 'Mile', 'Foot', 'Inch', 'Yard'],
+  weight: ['Kilogram', 'Gram', 'Milligram', 'Pound', 'Ounce', 'Ton'],
+  temperature: ['Celsius', 'Fahrenheit', 'Kelvin'],
+  volume: ['Liter', 'Milliliter', 'Cubic Meter', 'Gallon', 'Fluid Ounce', 'Cup']
 };
 
 const TO_SI: Record<Exclude<UnitType, 'temperature'>, Record<string, number>> = {
-  length: { Kilometer:1000, Meter:1, Centimeter:0.01, Millimeter:0.001, Mile:1609.344, Foot:0.3048, Inch:0.0254, Yard:0.9144 },
-  weight: { Kilogram:1, Gram:0.001, Milligram:1e-6, Pound:0.453592, Ounce:0.0283495, Ton:1000 },
-  volume: { Liter:1, Milliliter:0.001, 'Cubic Meter':1000, Gallon:3.78541, 'Fluid Ounce':0.0295735, Cup:0.236588 }
+  length: { Kilometer: 1000, Meter: 1, Centimeter: 0.01, Millimeter: 0.001, Mile: 1609.344, Foot: 0.3048, Inch: 0.0254, Yard: 0.9144 },
+  weight: { Kilogram: 1, Gram: 0.001, Milligram: 1e-6, Pound: 0.453592, Ounce: 0.0283495, Ton: 1000 },
+  volume: { Liter: 1, Milliliter: 0.001, 'Cubic Meter': 1000, Gallon: 3.78541, 'Fluid Ounce': 0.0295735, Cup: 0.236588 }
 };
 
 @Component({
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
   hasResult = false;
   welcomeText = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit() {
     if (typeof window === 'undefined') {
