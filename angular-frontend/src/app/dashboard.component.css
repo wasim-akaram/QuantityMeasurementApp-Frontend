@@ -29,7 +29,7 @@ header {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 4px 20px rgba(67, 97, 238, .35);
-    background-color: rgb(175, 102, 224);
+    background-color: rgb(16, 188, 182);
 }
 
 header h1 {
@@ -95,14 +95,14 @@ main {
     gap: 10px;
     transition: border-color .2s, box-shadow .2s, transform .15s;
     font-family: inherit;
-    background-color: rgb(157, 134, 173);
+    background-color: rgb(181, 244, 246);
 }
 
 .type-btn.active {
     border-color: var(--blue);
     background: var(--blue-light);
     box-shadow: 0 4px 16px rgba(67, 97, 238, .18);
-    background-color: rgb(152, 71, 206);
+    background-color: rgb(40, 176, 185);
 }
 
 .type-btn.active .label {
@@ -139,7 +139,7 @@ main {
     color: var(--muted);
     cursor: pointer;
     transition: all .2s;
-    background-color: rgb(127, 97, 148);
+    background-color: rgb(181, 244, 246);
 }
 
 .tab-btn.active {
@@ -147,7 +147,7 @@ main {
     border-color: var(--blue);
     color: #fff;
     box-shadow: 0 4px 14px rgba(67, 97, 238, .3);
-    background-color: rgb(144, 54, 205);
+    background-color:rgb(40, 176, 185);
 }
 
 .inputs-row {
@@ -155,7 +155,7 @@ main {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     margin-bottom: 24px;
-    background-color: rgb(209, 173, 233);
+    
 }
 
 .input-group {
@@ -170,7 +170,7 @@ main {
     letter-spacing: 1.2px;
     text-transform: uppercase;
     color: var(--muted);
-    background-color: rgb(204, 167, 228);
+   
 }
 
 .input-group input[type="number"] {
@@ -185,7 +185,7 @@ main {
     outline: none;
     width: 100%;
     transition: border-color .2s;
-    background-color: rgb(200, 164, 224);
+    background-color: rgb(181, 244, 246);
 }
 
 .input-group select {
@@ -204,7 +204,7 @@ main {
     background-repeat: no-repeat;
     background-position: right 12px center;
     padding-right: 34px;
-    background-color: rgb(197, 151, 227);
+    
 }
 
 .arith-op {
@@ -212,7 +212,7 @@ main {
     gap: 10px;
     margin-bottom: 20px;
     align-items: center;
-    background-color: rgb(199, 167, 221);
+    background-color:rgb(181, 244, 246);
 }
 
 .arith-op.visible {
@@ -230,7 +230,7 @@ main {
     cursor: pointer;
     color: var(--muted);
     transition: all .15s;
-    background-color: rgb(166, 83, 222);
+    background-color:rgb(181, 244, 246);
 }
 
 .op-btn:hover,
@@ -238,7 +238,7 @@ main {
     background: var(--blue);
     border-color: var(--blue);
     color: #fff;
-    background-color: rgb(141, 36, 211);
+   background-color:rgb(40, 176, 185);
 }
 
 .calc-btn {
@@ -255,8 +255,7 @@ main {
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(67, 97, 238, .3);
     transition: transform .15s, box-shadow .2s;
-    background-color: rgb(152, 129, 168);
-}
+    background-color:rgb(165, 206, 207);
 
 .calc-btn:hover {
     transform: translateY(-2px);
@@ -273,7 +272,7 @@ main {
     font-weight: 600;
     color: var(--text);
     display: none;
-    background-color: rgb(191, 166, 212);
+    background-color:rgb(165, 206, 207);
 }
 
 #result-box.show {
@@ -313,4 +312,5 @@ main {
     .card {
         padding: 22px 18px;
     }
+}
 }
