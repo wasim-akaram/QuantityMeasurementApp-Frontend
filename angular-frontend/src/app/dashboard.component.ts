@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { QuantityService, QuantityDTO } from './quantity.service';
+import { Observable } from 'rxjs';
 
 type UnitType = 'length' | 'weight' | 'temperature' | 'volume';
 
@@ -44,7 +46,19 @@ export class DashboardComponent implements OnInit {
   hasResult = false;
   welcomeText = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private quantityService: QuantityService) { }
+
+  private getMeasurementType(): string {
+    return this.currentType.toUpperCase();
+  }
+
+  private createQuantityDTO(value: number, unit: string): QuantityDTO {
+    return {
+      value,
+      unit,
+      measurementType: this.getMeasurementType()
+    };
+  }
 
   ngOnInit() {
     if (typeof window === 'undefined') {
@@ -130,35 +144,75 @@ export class DashboardComponent implements OnInit {
   calculate() {
     if (isNaN(this.val1)) { alert('Please enter a valid number in the FROM field.'); return; }
 
-    let html = '';
     if (this.currentAction === 'conversion') {
-      let output = this.currentType === 'temperature'
-        ? this.convertTemperature(this.val1, this.unit1, this.unit2)
-        : this.convertFromSI(this.convertToSI(this.val1, this.unit1), this.unit2);
-
-      html = `<div class="subtext">Conversion Result</div><div class="result-value">${this.fmt(this.val1)} ${this.unit1} = <strong>${this.fmt(output)} ${this.unit2}</strong></div>`;
-
+      if (this.currentType === 'temperature') {
+        // Handle temperature conversion locally
+        const output = this.convertTemperature(this.val1, this.unit1, this.unit2);
+        const html = `<div class="subtext">Conversion Result</div><div class="result-value">${this.fmt(this.val1)} ${this.unit1} = <strong>${this.fmt(output)} ${this.unit2}</strong></div>`;
+        this.resultHtml = html;
+        this.hasResult = true;
+      } else {
+        const quantity = this.createQuantityDTO(this.val1, this.unit1);
+        this.quantityService.convert(quantity, this.unit2).subscribe({
+          next: (result) => {
+            const html = `<div class="subtext">Conversion Result</div><div class="result-value">${this.fmt(this.val1)} ${this.unit1} = <strong>${this.fmt(result.value)} ${result.unit}</strong></div>`;
+            this.resultHtml = html;
+            this.hasResult = true;
+          },
+          error: (error) => {
+            alert('Conversion failed: ' + error.message);
+          }
+        });
+      }
     } else if (this.currentAction === 'comparison') {
       if (isNaN(this.val2)) { alert('Please enter a value in the TO field.'); return; }
       const siA = this.currentType === 'temperature' ? this.convertTemperature(this.val1, this.unit1, 'Celsius') : this.convertToSI(this.val1, this.unit1);
       const siB = this.currentType === 'temperature' ? this.convertTemperature(this.val2, this.unit2, 'Celsius') : this.convertToSI(this.val2, this.unit2);
       const sym = siA > siB ? '>' : siA < siB ? '<' : '=';
       const color = siA > siB ? '#f72585' : siA < siB ? '#4361ee' : '#2ecc71';
-      html = `<div class="subtext">Comparison Result</div><div class="result-value" style="color:${color};">${this.fmt(this.val1)} ${this.unit1} <span class="sym">${sym}</span> ${this.fmt(this.val2)} ${this.unit2}</div>`;
-
+      const html = `<div class="subtext">Comparison Result</div><div class="result-value" style="color:${color};">${this.fmt(this.val1)} ${this.unit1} <span class="sym">${sym}</span> ${this.fmt(this.val2)} ${this.unit2}</div>`;
+      this.resultHtml = html;
+      this.hasResult = true;
     } else {
       if (isNaN(this.val2)) { alert('Please enter a value in the Value 2 field.'); return; }
-      const si1 = this.currentType === 'temperature' ? this.convertTemperature(this.val1, this.unit1, 'Kelvin') : this.convertToSI(this.val1, this.unit1);
-      const si2 = this.currentType === 'temperature' ? this.convertTemperature(this.val2, this.unit2, 'Kelvin') : this.convertToSI(this.val2, this.unit2);
-      const opResult = this.doOp(si1, si2);
-      if (opResult === null) return;
-      const res = this.currentType === 'temperature' ? this.convertTemperature(opResult, 'Kelvin', this.unit1) : this.convertFromSI(opResult, this.unit1);
-      const opSym = { '+': '+', '-': '−', '*': '×', '/': '÷' }[this.currentOp];
-      html = `<div class="subtext">Arithmetic Result</div><div class="result-value">${this.fmt(this.val1)} ${this.unit1} ${opSym} ${this.fmt(this.val2)} ${this.unit2} = <strong>${this.fmt(res)} ${this.unit1}</strong></div>`;
+      if (this.currentType === 'temperature') {
+        alert('Arithmetic operations are not supported for temperature.');
+        return;
+      }
+      const q1 = this.createQuantityDTO(this.val1, this.unit1);
+      const q2 = this.createQuantityDTO(this.val2, this.unit2);
+      let serviceCall: Observable<QuantityDTO | number>;
+      if (this.currentOp === '+') {
+        serviceCall = this.quantityService.add(q1, q2);
+      } else if (this.currentOp === '-') {
+        serviceCall = this.quantityService.subtract(q1, q2);
+      } else if (this.currentOp === '*') {
+        serviceCall = this.quantityService.multiply(q1, q2);
+      } else if (this.currentOp === '/') {
+        serviceCall = this.quantityService.divide(q1, q2);
+      } else {
+        return;
+      }
+      serviceCall.subscribe({
+        next: (result) => {
+          let displayResult: string;
+          let unit: string = '';
+          if (typeof result === 'number') {
+            displayResult = this.fmt(result);
+          } else {
+            displayResult = this.fmt(result.value);
+            unit = ' ' + result.unit;
+          }
+          const opSym = { '+': '+', '-': '−', '*': '×', '/': '÷' }[this.currentOp];
+          const html = `<div class="subtext">Arithmetic Result</div><div class="result-value">${this.fmt(this.val1)} ${this.unit1} ${opSym} ${this.fmt(this.val2)} ${this.unit2} = <strong>${displayResult}${unit}</strong></div>`;
+          this.resultHtml = html;
+          this.hasResult = true;
+        },
+        error: (error) => {
+          alert('Arithmetic operation failed: ' + error.message);
+        }
+      });
     }
-
-    this.resultHtml = html;
-    this.hasResult = true;
   }
 
   logout() {

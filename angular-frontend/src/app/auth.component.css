@@ -134,10 +134,13 @@
   color: #777;
 }
 
-.signup-btn {
+.signup-btn,
+.google-btn {
   width: 100%;
-  background: #006fe6;
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   border: none;
   padding: 13px;
   border-radius: 4px;
@@ -147,8 +150,22 @@
   margin-top: 10px;
 }
 
+.signup-btn {
+  background: #006fe6;
+  color: white;
+}
+
 .signup-btn:hover {
   background: #0057b8;
+}
+
+.google-btn {
+  background: #db4437;
+  color: white;
+}
+
+.google-btn:hover {
+  background: #b33629;
 }
 
 .bottom-text {

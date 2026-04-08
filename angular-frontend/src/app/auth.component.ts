@@ -207,6 +207,12 @@ export class AuthComponent {
     });
   }
 
+  loginWithGoogle() {
+    if (typeof window !== 'undefined') {
+      window.location.href = '/oauth2/authorization/google';
+    }
+  }
+
   togglePassword(field: 'signupPassword' | 'loginPassword') {
     const fieldInput = document.getElementById(field) as HTMLInputElement | null;
     if (!fieldInput) return;
